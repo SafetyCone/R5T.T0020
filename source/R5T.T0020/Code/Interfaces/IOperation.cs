@@ -8,4 +8,10 @@ namespace R5T.T0020
     {
         Task Run();
     }
+
+
+    public interface IActionOperation<T>
+    {
+        Task Run(T value);
+    }
 }
