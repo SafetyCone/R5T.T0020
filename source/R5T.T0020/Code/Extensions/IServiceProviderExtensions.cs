@@ -26,5 +26,15 @@ namespace System
 
             return operation.Run(value);
         }
+
+        public static Task Run<TActionOperation, TValue1, TValue2>(this IServiceProvider serviceProvider,
+            TValue1 value1,
+            TValue2 value2)
+            where TActionOperation : IActionOperation<TValue1, TValue2>
+        {
+            var operation = serviceProvider.GetRequiredService<TActionOperation>();
+
+            return operation.Run(value1, value2);
+        }
     }
 }
