@@ -36,5 +36,22 @@ namespace System
 
             return operation.Run(value1, value2);
         }
+
+        public static Task<TOut> Run<TFunctionOperation, TOut>(this IServiceProvider serviceProvider)
+            where TFunctionOperation : IFunctionOperation<TOut>
+        {
+            var operation = serviceProvider.GetRequiredService<TFunctionOperation>();
+
+            return operation.Run();
+        }
+
+        public static Task<TOut> Run<TFunctionOperation, TIn, TOut>(this IServiceProvider serviceProvider,
+            TIn value)
+            where TFunctionOperation : IFunctionOperation<TIn, TOut>
+        {
+            var operation = serviceProvider.GetRequiredService<TFunctionOperation>();
+
+            return operation.Run(value);
+        }
     }
 }
