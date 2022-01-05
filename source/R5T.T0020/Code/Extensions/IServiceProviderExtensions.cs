@@ -11,7 +11,7 @@ namespace System
     public static class IServiceProviderExtensions
     {
         public static Task Run<TOperation>(this IServiceProvider serviceProvider)
-            where TOperation : IOperation
+            where TOperation : IActionOperation
         {
             var operation = serviceProvider.GetRequiredService<TOperation>();
 
